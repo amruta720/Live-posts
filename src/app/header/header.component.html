@@ -16,15 +16,15 @@
     <div class="collapse navbar-collapse" id="myNavbar">
       <ul class="nav navbar-nav">
         <li><a routerLink="post-list">Posts</a></li>
-        <li><a routerLink="post-add">Add Post</a></li>
+        <li><a routerLink="post-add" *ngIf="isAuthenticated">Add Post</a></li>
       </ul>
       <ul class="nav navbar-nav navbar-right">
-        <li><a routerLink="auth"><span class="glyphicon glyphicon-user"></span>Login</a></li>
-        <li><a (click)='onSaveData()'><span class="glyphicon glyphicon-save"></span>Save data</a></li>
-        <li><a (click)='onFetchData()'><span class="glyphicon glyphicon-tasks"></span>Fetch data</a></li>
+        <li><a routerLink="auth" *ngIf="!isAuthenticated"><span class="glyphicon glyphicon-user"></span>Login</a></li>
+        <li><a (click)='onSaveData()' *ngIf="isAuthenticated"><span class="glyphicon glyphicon-save"></span>Save data</a></li>
+        <li><a (click)='onFetchData()' *ngIf="isAuthenticated"><span class="glyphicon glyphicon-tasks"></span>Fetch data</a></li>
         <li>
           <div class="dropdown">
-            <a class="dropbtn" href="#"><span class="glyphicon glyphicon-cog"></span>Settings</a>
+            <a class="dropbtn" href="#" *ngIf="isAuthenticated"><span class="glyphicon glyphicon-cog"></span>Settings</a>
             <div class="dropdown-content">
               <a href="#">Theme</a>
               <a href="#">Profile</a>
@@ -32,6 +32,9 @@
             </div>
           </div>
        </li> 
+       <li>
+         <a *ngIf="isAuthenticated">Logout</a>
+       </li>
       </ul>
       </div>
     </div>
